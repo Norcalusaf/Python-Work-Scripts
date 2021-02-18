@@ -1,13 +1,6 @@
 from datetime import datetime
 import os
 
-"""
-Name: DF_TO_CSV                            
-Created by: Chris Wilson, Sam McVicar                   
-Creation Date: 11/9/2020                                
-Purpose: This takes a dataframe and dumps it to a CSV File                                                                              
-"""
-
 
 def data_write(df, loc, file, wmode):
     """
