@@ -5,9 +5,9 @@ import datetime
 from dateutil.relativedelta import relativedelta
 
 """                            
-Purpose: Exports data from a view, maniuplates the column names
-and then exports it to a location based on column distinct values.
-The export process is in CSV and will create the folder if it doesn't exist.                                                                
+Purpose: Exports data from a HANA DB, puts it into a Pandas Dataframe,
+renames generic named columns to the respective month/year. It then exports
+the dataframe to csv(s). each csv contains a subset of data from the unique filter                                                             
 """
 
 
@@ -75,8 +75,6 @@ def output(x, result):
     :param result: Data frame
     :return:
     """
-    # TODO: Move this down into the data_write function, it's not really needed..
-
     location = f"\\Path\{x}"
     file_name = f'{x}_DATASET'
     try:
@@ -121,4 +119,4 @@ if __name__ == '__main__':
     result = hana_df(username, password, environment, frm)
     [df_normalize(result, i) for i in month_offsets]
     Unique_ID_List = result.UNIQUE_ID.unique()
-    [output(x, result.loc[result["UNIQUE_ID"] == x]) for x in supplier_list]
+    [output(x, result.loc[result["UNIQUE_ID"] == x]) for x in Unique_ID_List]
