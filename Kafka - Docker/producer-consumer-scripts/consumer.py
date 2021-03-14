@@ -4,6 +4,10 @@ from time import sleep
 
 
 def read_data():
+    """
+    Reads data from Kafka
+    :return:
+    """
     consumer = KafkaConsumer(
         'example_topic',
         bootstrap_servers=['localhost:9092'],
